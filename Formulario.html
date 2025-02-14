@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário com Assinatura Digital</title>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        canvas {
+            border: 1px solid #000;
+            width: 100%;
+            height: 150px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Formulário de Prova Online</h2>
+    <form id="formulario">
+        <label>Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+        
+        <div id="perguntas">
+            <label>1 - Em caso de vazamentos de óleos, lubrificantes, combustíveis, produtos químicos o que devo fazer?</label><br>
+            <input type="radio" name="pergunta1" value="A"> Ficar olhando e não fazer nada<br>
+            <input type="radio" name="pergunta1" value="B"> Devo comunicar a segurança do trabalho e meio ambiente<br>
+            <input type="radio" name="pergunta1" value="C"> Devo pegar alguma ferramenta e juntar o líquido que está vazando<br>
+            <input type="radio" name="pergunta1" value="D"> Espero vazar todo o líquido para depois ver o que fazer<br><br>
+            
+            <label>2 - As atividades de risco devem ser realizadas somente mediante a permissão de trabalho.</label><br>
+            <input type="radio" name="pergunta2" value="Verdadeiro"> Verdadeiro<br>
+            <input type="radio" name="pergunta2" value="Falso"> Falso<br><br>
+            
+            <label>3 - Em caso de necessidade de abandono de área, o alarme soará o que devo fazer?</label><br>
+            <input type="radio" name="pergunta3" value="A"> Ficar parado sem fazer nada<br>
+            <input type="radio" name="pergunta3" value="B"> Seguir as orientações dos brigadistas e ir para o ponto de encontro<br>
+            <input type="radio" name="pergunta3" value="C"> Correr para um local fechado<br>
+            <input type="radio" name="pergunta3" value="D"> Seguir a orientação do meu encarregado<br><br>
+            
+            <label>4 - Em quais locais devo andar dentro da Berneck?</label><br>
+            <input type="radio" name="pergunta4" value="A"> Andar pelo local que eu quiser<br>
+            <input type="radio" name="pergunta4" value="B"> Andar pela calçada, seguindo caminho seguro<br>
+            <input type="radio" name="pergunta4" value="C"> Sigo fluxo das pessoas<br>
+            <input type="radio" name="pergunta4" value="D"> Escolho o caminho mais curto<br><br>
+            
+            <label>5 - Qual limite máximo de velocidade dentro da planta da Berneck?</label><br>
+            <input type="radio" name="pergunta5" value="A"> 40 km/h<br>
+            <input type="radio" name="pergunta5" value="B"> 50 km/h<br>
+            <input type="radio" name="pergunta5" value="C"> 20 km/h<br>
+            <input type="radio" name="pergunta5" value="D"> 10 km/h<br><br>
+            
+            <label>6 - Quando que preciso solicitar bloqueio de uma máquina ou equipamento?</label><br>
+            <input type="radio" name="pergunta6" value="A"> Não preciso porque ela está em manutenção<br>
+            <input type="radio" name="pergunta6" value="B"> Faço de qualquer maneira, pois nunca sofri acidente de trabalho<br>
+            <input type="radio" name="pergunta6" value="C"> Sempre que for executar qualquer manutenção tenho que solicitar o bloqueio com cadeado e cartão do responsável pelo bloqueio<br>
+            <input type="radio" name="pergunta6" value="D"> Devo somente me certificar que está desligada<br><br>
+            
+            <label>7 - Quando for fazer uma movimentação de carga qual procedimento?</label><br>
+            <input type="radio" name="pergunta7" value="A"> Colocar a cinta e fazer a movimentação<br>
+            <input type="radio" name="pergunta7" value="B"> Fazer da forma que é feita em outras empresas<br>
+            <input type="radio" name="pergunta7" value="C"> Isolar a área, verificar se não há risco de enroscar em cabos de alta tensão, verificar se todos estão com EPIs<br>
+            <input type="radio" name="pergunta7" value="D"> Somente sigo as indicações do meu encarregado<br><br>
+        </div>
+        
+        <label>Assinatura:</label><br>
+        <canvas id="assinatura"></canvas><br>
+        <button type="button" onclick="limparAssinatura()">Limpar Assinatura</button>
+        <button type="button" onclick="gerarPDF()">Gerar PDF</button>
+    </form>
+</body>
+</html>
